@@ -3,6 +3,7 @@
 #ht <- read.csv.sql('household_power_consumption.txt', sep=";", header=T, sql = 'select * from file where Date in ("01/02/2007","02/02/2007")')
 
 ## Load Data into memory, 
+##Data seems to corrupt if loaded with stringAsFactors default =T due to the ?
 ht <- read.table('household_power_consumption.txt',sep=';', header=T, stringsAsFactors=F)
 
 ht$DateTime <- paste(ht$Date,ht$Time,sep=' ')
@@ -15,9 +16,6 @@ d <- ht[ht$Date %in% as.Date(c('2007-02-01', '2007-02-02'),"%Y-%m-%d"),]
 
 ##Add datetime field (if just use date, all plots occur on two points only)
 d$DateTime <- as.POSIXct(d$DateTime, format="%d/%m/%Y %H:%M:%S")
-d$Sub_metering_1 <- as.numeric(d$Sub_metering_1)
-d$Sub_metering_2 <- as.numeric(d$Sub_metering_2)
-d$Sub_metering_3 <- as.numeric(d$Sub_metering_3)
 ##open png graphics device
 png(filename = "plot3.png", width = 480, height = 480, units = "px", pointsize = 12, bg = "white")
 ##draw line chart
