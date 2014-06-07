@@ -3,7 +3,7 @@
 #ht <- read.csv.sql('household_power_consumption.txt', sep=";", header=T, sql = 'select * from file where Date in ("01/02/2007","02/02/2007")')
 
 ## Load Data into memory
-ht <- read.table('household_power_consumption.txt',sep=';', header=T, stringsAsFactors=F)
+ht <- read.table('household_power_consumption.txt',sep=';', header=T, stringsAsFactors=F, na.strings="?")
 ##Date in format dd/mm/yyyy
 ht$Date <- as.Date(ht$Date , "%d/%m/%Y")
 ##Filter only dates required

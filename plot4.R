@@ -3,8 +3,7 @@
 #ht <- read.csv.sql('household_power_consumption.txt', sep=";", header=T, sql = 'select * from file where Date in ("01/02/2007","02/02/2007")')
 
 ## Load Data into memory, 
-##Data seems to corrupt if loaded with stringAsFactors default =T due to the ?
-ht <- read.table('household_power_consumption.txt',sep=';', header=T, stringsAsFactors=F)
+ht <- read.table('household_power_consumption.txt',sep=';', header=T, stringsAsFactors=F, na.strings="?")
 
 ht$DateTime <- paste(ht$Date,ht$Time,sep=' ')
 ##Date in format dd/mm/yyyy - dont need for this plot 
